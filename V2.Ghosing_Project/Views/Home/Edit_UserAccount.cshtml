@@ -1,0 +1,48 @@
+﻿@model V2.Ghosing_Project.Models.clsUserAccount
+
+@{
+    ViewBag.Title = "Edit_UserAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit_UserAccount", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(m => m._UserName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m._UserName, new { @class = "form-control" })
+        </div>
+    </div> 
+    <div class="from-group">
+        @Html.LabelFor(m => m._UserStatus, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m._UserStatus, "true", new { @checked = true, id = "M" })
+                    Active
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m._UserStatus, "false", new { id = "F" })
+                    Suspend
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<V2.Ghosing_Project.Models.clsUserAccount>
+
+@{
+    ViewBag.Title = "Grid_UserAccount";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5);
+}
+
+@{
+    ViewBag.Title = "Grid_UserAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserAccount</h2>
+<button type="button" onclick="Addnew()" class="btn btn-primary btn-sm glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal">
+    &nbsp;
+</button>
+
+<script>
+    function Addnew() {
+        window.location.href = 'Register', 'Account';
+    }
+</script>
+<style type="text/css">
+    /*.table {
+        margin: 4px;
+        border-collapse: collapse;
+        width: 300px;
+    }
+
+    .header {
+        background-color: gray;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .table th, .table td {
+        border: 1px solid black;
+        padding: 5px;
+    }*/
+</style>
+
+@grid.GetHtml(
+
+    tableStyle: "table", // applying style on grid
+
+    fillEmptyRows: true,
+        //show empty row when there is only one record on page to it will display all empty rows there.
+
+    headerStyle: "header", //applying style.
+
+    footerStyle: "grid-footer", //applying style.
+
+    mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+
+    columns: new[]  // colums in grid
+    {
+        //grid.Column("_UserID", style:"hidecol"),
+        grid.Column("_UserName", header:"User Name"),
+        grid.Column("_UserPWD"),
+        grid.Column("_UserStatus"),
+        grid.Column("Action", format: @<text>
+            @Html.ActionLink("Edit", "Edit_UserAccount", new { param1 = @item._UserID, param2 = @item._UserName,
+                    param3= @item._UserPWD, param4= @item._UserStatus}) |
+            <a href="/Home/Edit_UserAccount/param1/@item._UserID">Edit Record</a> |
+                @Html.ActionLink("Delete", "Delete_UserAccount", new
+                {
+                    param1 = @item._UserID
+                })
+            @*<a href="/Home/Edit_UserAccount/param1/@item._UserID">Edit Record</a> |*@
+            @*<button class="save-user edit-mode" onclick="myFunction()">Delete</button>|
+
+            <script>
+                function myFunction() {
+                    alert("Hello\nHow are you?");
+                }
+            </script>*@
+        </text>,  style: "col3Width" , canSort: false)  ,
+   })
+
+
+
+
+@*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
