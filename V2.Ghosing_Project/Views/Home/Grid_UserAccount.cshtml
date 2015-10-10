@@ -11,15 +11,11 @@
 }
 
 <h2>UserAccount</h2>
-<button type="button" onclick="Addnew()" class="btn btn-primary btn-sm glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal">
-    &nbsp;
-</button>
+@Html.ActionLink("Add New", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+    
 
-<script>
-    function Addnew() {
-        window.location.href = 'Register', 'Account';
-    }
-</script>
+
+
 <style type="text/css">
     /*.table {
         margin: 4px;
@@ -60,11 +56,13 @@
     {
         //grid.Column("_UserID", style:"hidecol"),
         grid.Column("_UserName", header:"User Name"),
-        grid.Column("_UserPWD"),
-        grid.Column("_UserStatus"),
+        //grid.Column("_UserPWD"),
+        grid.Column("_UserStatus", header:"Status"),
         grid.Column("Action", format: @<text>
-            @Html.ActionLink("Edit", "Edit_UserAccount", new { param1 = @item._UserID, param2 = @item._UserName,
-                    param3= @item._UserPWD, param4= @item._UserStatus}) |
+            @Html.ActionLink("Edit", "Edit_UserAccount", new { 
+                    param1 = @item._UserID, 
+                    param2 = @item._UserName,
+                    param3 = @item._UserStatus}) |
             <a href="/Home/Edit_UserAccount/param1/@item._UserID">Edit Record</a> |
                 @Html.ActionLink("Delete", "Delete_UserAccount", new
                 {

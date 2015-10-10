@@ -53,7 +53,7 @@ namespace V2.Ghosing_Project.Controllers
            
             _ds_useraccount = db_con.ExecuteDataSet("SELECT UserID, UserName, UserPWD FROM [PS_UserACC] " +
                               " WHERE UserName = '"+ model.UserName +"' AND UserPWD = '"+ model.Password +"'");
-
+           
             if (ModelState.IsValid)
             {
 
@@ -78,11 +78,12 @@ namespace V2.Ghosing_Project.Controllers
                 //    ModelState.AddModelError("", "Invalid username or password.");
                 //}
             }
+           
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+       
         //
         // GET: /Account/Register
         [AllowAnonymous]

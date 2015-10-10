@@ -76,13 +76,51 @@ namespace V2.Ghosing_Project.Controllers
             return View(lmd);
 
         }
-        public ActionResult Edit_UserAccount(string param1, string param2){
+        public ActionResult Edit_UserAccount( string param1, string param2, string param3){
             getUserAcc._UserID =  param1;
             getUserAcc._UserName = param2;
+            getUserAcc._UserStatus = param3;
             
             ViewBag.UserID = getUserAcc._UserID;
             ViewBag.UserName = getUserAcc._UserName;
+
+            if (param3 == "Active")
+            {
+                ViewBag.UserStatus = "@checked = true";
+            }
+            else if (param3 == "Suspend")
+            {
+                ViewBag.UserStatus = "@checked = true";
+            }
+            //return Content("<script language='javascript' type='text/javascript'>alert('Cannot Successfully'); window.location.href = 'Account : " + param1 + "','Home';</script>");
             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_UserAccount(clsUserAccount u)
+        {
+            string _status = u._UserStatus;
+            int _sta = 0;
+            if (_status == "true")
+            {
+                _sta = 1;
+            }
+
+            int _Update = _dbConnect.ExecuteNonQuery("UPDATE PS_UserACC SET UserName = '" + u._UserName + "', UserStatus = "+ _sta +" WHERE UserID = '" + u._UserID + "'");
+
+            if (_Update == 1)
+            {
+               // return Content("<script language='javascript' type='text/javascript'>alert('"+u._UserStatus+"');</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('Successfully'); window.location.href = 'Grid_UserAccount','Home';</script>");
+            }
+            else
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Cannot Successfully" + u._UserID + "'); window.location.href = 'Grid_UserAccount','Home';</script>");
+            }
+
+           // return Content("<script language='javascript' type='text/javascript'>alert('Cannot Successfully: "+ u._UserID +"'); window.location.href = 'Grid_UserAccount','Home';</script>");
         }
         public ActionResult Delete_UserAccount(string param1) 
         {

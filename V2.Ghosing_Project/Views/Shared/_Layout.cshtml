@@ -21,21 +21,56 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More.. <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Setting <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="#">Customer</a></li>
+                            <li><a href="#">Customer Order</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Work</a></li>
+                            <li><a href="#">Color</a></li>
+                            <li><a href="#">Size</a></li>
+                            <li role="separator" class="divider"></li>
                             <li>@Html.ActionLink("UserAccount", "Grid_UserAccount", "Home")</li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work Completed<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">------</a></li>
+                            <li><a href="#">------</a></li>
+                            <li><a href="#">------</a></li>
+                           <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Defective<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">------</a></li>
+                            <li><a href="#">------</a></li>
+                            <li><a href="#">------</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">1. ផលិតផលស្កែនទាំងអស់</a></li>
+                            <li><a href="#">2. ផលិតផលមិនទាន់បានធ្វើ</a></li>
+                            <li><a href="#">3. សង្ខេបផលិតផលមិនទានធ្វើ</a></li>
+                            <li><a href="#">4. ផលិតផលកម្មករម្នាក់ៗ</a></li>
+                            <li><a href="#">5. ការងារខុស</a></li>
+                            <li><a href="#">6. ការងារមិនអាចកែបាន</a></li>
+                            <li><a href="#">7. សរុបតាមផ្នែកប្រចាំថ្ងៃ</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

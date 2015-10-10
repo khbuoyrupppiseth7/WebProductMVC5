@@ -4,15 +4,18 @@
     ViewBag.Title = "Edit_UserAccount";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<hr />
+<h2>Account Edit</h2>
 @using (Html.BeginForm("Edit_UserAccount", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+   
+    @Html.TextBoxFor(m => m._UserID, new { @Value = ViewBag.UserID, style = "display:none;" })
     <div class="form-group">
         @Html.LabelFor(m => m._UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m._UserName, new { @Value = @ViewBag.UserName, @class = "form-control" })
         </div>
     </div> 
     <div class="from-group">
@@ -20,13 +23,13 @@
         <div class="col-md-10">
             <div class="radio">
                 <label>
-                    @Html.RadioButtonFor(m => m._UserStatus, "true", new { @checked = true, id = "M" })
+                    @Html.RadioButtonFor(m => m._UserStatus, "true", new { @checked = true, id = "T" })
                     Active
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    @Html.RadioButtonFor(m => m._UserStatus, "false", new { id = "F" })
+                    @Html.RadioButtonFor(m => m._UserStatus, "false", new {  id = "F" })
                     Suspend
                 </label>
             </div>
@@ -38,9 +41,6 @@
         </div>
     </div>
 }
-
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
