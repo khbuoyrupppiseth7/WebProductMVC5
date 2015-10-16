@@ -226,6 +226,7 @@
     <Content Include="Views\Home\Grid_UserAccount.cshtml" />
     <Content Include="Views\Home\Edit_UserAccount.cshtml" />
     <Content Include="Views\Home\Testing.cshtml" />
+    <Content Include="Views\Home\Customer_New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

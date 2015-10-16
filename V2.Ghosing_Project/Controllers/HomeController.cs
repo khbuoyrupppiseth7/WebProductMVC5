@@ -133,8 +133,69 @@ namespace V2.Ghosing_Project.Controllers
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('You cannot delete this User.'); window.location.href = 'Grid_UserAccount','Home';</script>");
             }
-            
             //return RedirectToAction("Grid_UserAccount","Home");
+        }
+
+        public ActionResult Customer_New()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Customer_New(clsCustomer c)
+        {
+            int _InsertCustomer = _dbConnect.ExecuteNonQuery("INSERT INTO [PS_Customers]" +
+                                    " ([CustomerID]" +
+                                    ",[Name]" +
+                                    ",[idType]" +
+                                    ",[icpassportNo]" +
+                                    ",[Nationality]" +
+                                    ",[Gender]" +
+                                    ",[Birthdate]" +
+                                    ",[MaritalStatus]" +
+                                    ",[Address]" +
+                                    ",[ZipCode]" +
+                                    ",[PostalCode]" +
+                                    ",[POBox]" +
+                                    ",[City]" +
+                                    ",[Country]" +
+                                    ",[Tel1]" +
+                                    ",[Tel2]" +
+                                    ",[Fax]" +
+                                    ",[Mobile]" +
+                                    ",[eMail]" +
+                                    ",[autono])" +
+                                    " VALUES(" +
+                                    " '" + _dbConnect.AutoID() + "' " +
+                                    " ,N'" + c._Name + "' " +
+                                    " ,N'" + c._idType + "' " +
+                                    " ,N'" + c._icpassportNo + "' " +
+                                    " ,N'" + c._Nationality + "' " +
+                                    " ,N'" + c._Gender + "' " +
+                                    " ,N'" + DateTime.ParseExact(c._Birthdate, "yyyy-MM-dd", null) + "' " +
+                                    " ,N'" + c._MaritalStatus + "' " +
+                                    " ,N'" + c._Address + " ' " +
+                                    " ,N'" + c._ZipCode +"' " +
+                                    " ,N'" + c._PostalCode +"' " +
+                                    " ,N'" + c._POBox +"' " +
+                                    " ,N'" + c._City +"' " +
+                                    " ,N'" + c._Country +"' " +
+                                    " ,N'" + c._Tel1 +"' " +
+                                    " ,N'" + c._Tel2 +"' " +
+                                    " ,N'" + c._Fax +"' " +
+                                    " ,N'" + c._Mobile +"' " +
+                                    " ,N'" + c._eMail +"' " +
+                                    " ,N'');");
+            if (_InsertCustomer == 1)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Insert Successfully');</script>");
+            }
+            else
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('DB is Full');</script>");
+            }
         }
 
         public ActionResult Testing()

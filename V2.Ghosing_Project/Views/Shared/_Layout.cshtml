@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Data;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,7 +29,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Setting <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Customer</a></li>
+                            <li>@Html.ActionLink("Customer", "Customer_New", "Home")</li>
                             <li><a href="#">Customer Order</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Work</a></li>
@@ -42,18 +43,41 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work Completed<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">------</a></li>
-                            <li><a href="#">------</a></li>
-                            <li><a href="#">------</a></li>
-                           <li role="separator" class="divider"></li>
+                            @*<li><a href="#">------</a></li>*@
+                            @{
+                                DBAccess db = new DBAccess();
+                                DataSet ds_work;
+                                ds_work = db.ExecuteDataSet("SELECT WorkID, WorkName, isChangeColor FROM [PS_Work]");
+
+                                int i;
+
+                                for (i = 0; i <= ds_work.Tables[0].Rows.Count - 1; i++)
+                                {
+                                  <li><a href="Home/?type=wc&prd=@ds_work.Tables[0].Rows[i].ItemArray[1]&wid=@ds_work.Tables[0].Rows[i].ItemArray[0]&isChangeColor=@ds_work.Tables[0].Rows[i].ItemArray[2]"> @ds_work.Tables[0].Rows[i].ItemArray[1] </a></li>
+                                }
+                            }
+
+                            @*<li><a href="#">------</a></li>
+                            <li><a href="#">------</a></li>*@
+                            <li role="separator" class="divider"></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Defective<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">------</a></li>
-                            <li><a href="#">------</a></li>
-                            <li><a href="#">------</a></li>
+                            @*<li><a href="#">------</a></li>*@
+                            @{
+                                
+                                DataSet ds_work1;
+                                ds_work1 = db.ExecuteDataSet("SELECT WorngWorkID, WorkName, isChangeColor FROM [PS_Work]");
+
+                                int j;
+
+                                for (j = 0; j <= ds_work.Tables[0].Rows.Count - 1; j++)
+                                {
+                                    <li><a href="Home/?type=wc&prd=@ds_work.Tables[0].Rows[j].ItemArray[1]&wid=@ds_work.Tables[0].Rows[j].ItemArray[0]&isChangeColor=@ds_work.Tables[0].Rows[j].ItemArray[2]"> @ds_work.Tables[0].Rows[j].ItemArray[1] </a></li>
+                                }
+                            }
                             <li role="separator" class="divider"></li>
                         </ul>
                     </li>
