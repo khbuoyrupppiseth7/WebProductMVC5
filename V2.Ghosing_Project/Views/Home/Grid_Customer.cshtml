@@ -1,0 +1,63 @@
+﻿@model IEnumerable<V2.Ghosing_Project.Models.clsCustomer>
+
+@{
+    ViewBag.Title = "Grid_Customer";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5);
+}
+@{
+    ViewBag.Title = "Grid_Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Grid_Customer</h2>
+
+<div class="btn btn-success"> @Html.ActionLink("Add", "Customer_New", "Home", routeValues: null, htmlAttributes: new { id = "registerLink", @style = "color:#ffffff;" }) </div>
+<style type="text/css">
+    .header {
+        background-color: #0580bf;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .header a {
+        color: #ffffff;
+    }
+    .header a:hover {
+        color:#8b0e0e;
+    }
+</style>
+
+@grid.GetHtml(
+
+    tableStyle: "table", // applying style on grid
+
+    fillEmptyRows: true,
+        //show empty row when there is only one record on page to it will display all empty rows there.
+
+    headerStyle: "header", //applying style.
+
+    footerStyle: "grid-footer", //applying style.
+
+    mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+
+    columns: new[]  // colums in grid
+    {
+        //grid.Column("_CustomerID", style:"hidecol"),
+        grid.Column("_Name", header:"User Name"),
+        grid.Column("_idType", header:"_idType"),
+        grid.Column("_icpassportNo", header:"_icpassportNo"),
+        grid.Column("Action", format: @<text>
+            @Html.ActionLink("Edit", "Edit_UserAccount", new
+       {
+           param1 = @item._CustomerID
+       }) 
+        </text>,  style: "col3Width" , canSort: false)  ,
+   })
+
+
+
+

@@ -136,6 +136,46 @@ namespace V2.Ghosing_Project.Controllers
             //return RedirectToAction("Grid_UserAccount","Home");
         }
 
+        public ActionResult Grid_Customer()
+        {
+            List<clsCustomer> lmd = new List<clsCustomer>();  // creating list of model.
+            DataSet _dsCustomer = new DataSet();
+            _dsCustomer = _dbConnect.ExecuteDataSet("SELECT CustomerID, Name, idType, icpassportNo, Nationality, Gender, Birthdate, MaritalStatus, Address, " +
+                                            " ZipCode, PostalCode, POBox, City, Country, Tel1, Tel2, Fax, Mobile, eMail, autono " +
+                                            " FROM [dbo].[PS_Customers]; ");
+
+            foreach (DataRow dr in _dsCustomer.Tables[0].Rows) // loop for adding add from dataset to list<modeldata>
+            {
+                lmd.Add(new clsCustomer
+                {
+                    _CustomerID = dr["CustomerID"].ToString(),
+                    _Name = dr["Name"].ToString(),
+                    _idType = dr["idType"].ToString(),
+                    _icpassportNo = dr["idType"].ToString(),
+                    _Nationality = dr["idType"].ToString(),
+                    _Gender = dr["idType"].ToString(),
+                    _Birthdate = dr["idType"].ToString(),
+                    _MaritalStatus = dr["idType"].ToString(),
+                    _Address = dr["idType"].ToString(),
+                    _ZipCode = dr["idType"].ToString(),
+                    _PostalCode = dr["idType"].ToString(),
+                    _POBox = dr["idType"].ToString(),
+                    _City = dr["idType"].ToString(),
+                    _Country = dr["idType"].ToString(),
+                    _Tel1 = dr["idType"].ToString(),
+                    _Tel2 = dr["idType"].ToString(),
+                    _Fax = dr["idType"].ToString(),
+                    _Mobile = dr["idType"].ToString(),
+                    _eMail = dr["idType"].ToString(),
+                    //_autono = Convert.ToInt32(dr["autono"]),
+
+                   
+                });
+            }
+            return View(lmd);
+
+        }
+
         public ActionResult Customer_New()
         {
 
@@ -190,11 +230,11 @@ namespace V2.Ghosing_Project.Controllers
                                     " ,N'');");
             if (_InsertCustomer == 1)
             {
-                return Content("<script language='javascript' type='text/javascript'>alert('Insert Successfully');</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('Insert Successfully'); window.location.href = 'Grid_Customer','Home';</script>");
             }
             else
             {
-                return Content("<script language='javascript' type='text/javascript'>alert('DB is Full');</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('DB is Full'); window.location.href = 'Grid_Customer','Home';</script>");
             }
         }
 

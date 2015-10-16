@@ -11,23 +11,26 @@
 }
 
 <h2>UserAccount</h2>
-@Html.ActionLink("Add New", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-    
+@*@Html.ActionLink("Add", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })*@
 
-
+  <div class="btn btn-success"> @Html.ActionLink("Add", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @style = "color:#ffffff;" }) </div>
 
 <style type="text/css">
+    .header {
+        background-color: #0580bf;
+        font-weight: bold;
+        color: #fff;
+    }
+    .header a{
+        color:#ffffff;
+    }
+
     /*.table {
         margin: 4px;
         border-collapse: collapse;
         width: 300px;
     }
-
-    .header {
-        background-color: gray;
-        font-weight: bold;
-        color: #fff;
-    }
+ 
 
     .table th, .table td {
         border: 1px solid black;
